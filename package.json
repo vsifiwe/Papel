@@ -1,5 +1,5 @@
 {
-  "name": "AsifiweM.github.io",
+  "name": "Papel",
   "version": "1.0.0",
   "description": "A simple banking app",
   "main": "index.js",
@@ -19,13 +19,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AsifiweM/AsifiweM.github.io.git"
+    "url": "git+https://github.com/AsifiweM/Papel.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AsifiweM/AsifiweM.github.io/issues"
+    "url": "https://asifiwem.github.io/Papel/issues"
   },
-  "homepage": "https://github.com/AsifiweM/AsifiweM.github.io#readme"
+  "homepage": "https://asifiwem.github.io/Papel/UI/index.html"
 }
