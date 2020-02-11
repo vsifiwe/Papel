@@ -27,12 +27,14 @@
     outline: none;
 }
 body {
-    background-color: #565bbf;
+    /*background-color: #565bbf;*/
+    background-image: url(../Asset/Untitled-1.png);
 }
 
 hr {
     margin-top: 20px;
 }
+
 #mainpage {
     height: 100%;
     width: 100%;
@@ -283,42 +285,52 @@ tfoot td {
 }
 
 .panel {
-    padding: 0 0 0 30px;
+    padding: 30px 0 0 30px;
     margin: 50px 0 0 0;
+    width: 380px;
+    height: 480px;
+    position: relative;
+    margin: 6% auto;
+    background: beige;
+    border-radius: 25px;
+    overflow: hidden;
+
+    
 }
 
 .panel select {
     width: auto;
     height: 30px;
-    border-radius: 5px;
-    border: 1px solid #f2e52e;
+    border: none;
+    border-bottom: 1px solid black;
     margin: 0 0 20px 0;
 }
 
 .panel h4 {
-    color: white;
     margin: 20px 0 10px 0;
 }
 
 .panel input {
     display: block;
-    border: 1px solid black;
-    border-radius: 5px;
     margin: 20px 0;
     height: 30px;
-    width: 25%;
+    width: 85%;
     padding: 10px;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #bfb745;
+    background: transparent;
 }
 
 .panel button {
     width: auto;
-    height: 50px;
+    height: auto;
     padding: 10px;
     border-radius: 25px;
     transition: 0.5s;
     position: auto;
-    background-color: #35d380;
-    color: white;
+    background-color: #bfb745;
     margin: 20px 0 0 0px;
     border: none;
 }

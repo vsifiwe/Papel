@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width = device-width">
-        <title>Papel Banking | Accounts</title>
-        <link rel="stylesheet" href="../css/style.css">
-        <script src="../script/accountDashboard.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
-    </head>
 
-    <body>
-        <header>
-            <div class="row">
-                <ul class="main-nav">
-                    <li><a href="../html/StaffDashboard.html">Home</a></li>
-                    <li class="active"><a href="../html/accountDashboard.html">View Accounts</a></li>
-                    <li><a href="../html/faq.html">FAQ</a></li>
-                </ul>
-            </div>
-    
-            <div class="logo">
-                <h1> PAPEL </h1>
-            </div>
-        </header>
-        <h2>
-            Accounts
-        </h2>
-        
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width">
+    <title>Papel Banking | Accounts</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../script/accountDashboard.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="row">
+            <ul class="main-nav">
+                <li><a href="../html/StaffDashboard.html">Home</a></li>
+                <li class="active"><a href="../html/accountDashboard.html">View Accounts</a></li>
+                <li><a href="../html/faq.html">FAQ</a></li>
+            </ul>
+        </div>
+
+        <div class="logo">
+            <h1> PAPEL </h1>
+        </div>
+    </header>
+    <h2>
+        Accounts
+    </h2>
+
     <div class="accountTable">
         <table>
             <caption>Account History</caption>
@@ -38,7 +39,7 @@
                 <th>Type </th>
                 <th>Status</th>
                 <th>Balance</th>
-                
+
             </thead>
             <tbody>
                 <tr>
@@ -73,11 +74,22 @@
 
 
     </div>
-
+    <hr>
     <div class="moreAccountDetails">
-        <span> Enter a Papel bank Account Number to delete</span>
-        <input type="text" placeholder=" Account Number">
-        <button type="reset" id="deactivatebtn"> Delete </button>
+        <form>
+            <span> Enter a Papel bank Account Number to delete</span>
+            <input type="text" placeholder=" Account Number">
+            <button type="reset" id="deactivatebtn"> Delete </button>
+        </form>
     </div>
-    </body>
+    <hr>
+    <div class="moreAccountDetails">
+        <form action="../html/StaffTransactionDetails.html">
+            <span> Enter a Papel transaction ID to check more details</span>
+            <input type="text" placeholder=" Transaction ID">
+            <button type="submit"> Submit </button>
+        </form>
+    </div>
+</body>
+
 </html>
