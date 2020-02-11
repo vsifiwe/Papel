@@ -247,9 +247,10 @@ tfoot td {
     height: 30px;
     width: 25%;
     margin: 20px 0 0 0px;
+    border: none;
     border-radius: 10px;
     border-bottom: 1px solid #bfb745;
-    background: white;
+    background: beige;
     padding: 5px;
 }
 
@@ -279,8 +280,9 @@ tfoot td {
     display: block;
     width: auto;
     height: 30px;
+    border: none;
     border-radius: 5px;
-    border: 1px solid #f2e52e;
+    border-bottom: 1px solid black;
     margin: 0 0 20px 0;
 }
 
@@ -308,6 +310,7 @@ tfoot td {
 
 .panel h4 {
     margin: 20px 0 10px 0;
+    color: darkslategrey;
 }
 
 .panel input {
