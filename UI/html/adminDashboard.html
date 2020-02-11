@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = device-width">
+        <title>Papel Banking | Admin</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <script src="../script/adminDashboard.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <div class="row">
+                <ul class="main-nav">
+                    <li class="active"><a href="../html/adminDashboard.html">Home</a></li>
+                    <li><a href="../html/accountDashboard.html">View Accounts</a></li>
+                    <li><a href="UI/html/faq.html">FAQ</a></li>
+                </ul>
+            </div>
+    
+            <div class="logo">
+                <h1> PAPEL </h1>
+            </div>
+        </header>
+
+        <div class="userAccounts">
+            <table>
+                <caption>User Accounts</caption>
+                <thead>
+                    <th>User ID</th>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Password</th>
+                    <th>Type</th>
+                    <th>Admin?</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1F344D</td>
+                        <td>paigeturner@gmail.com</td>
+                        <td>Paige</td>
+                        <td>Turner</td>
+                        <td>Hello123</td>
+                        <td>User</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>2DDS23</td>
+                        <td>johndoe@gmail.com</td>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>123Doe</td>
+                        <td>User</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>J56788</td>
+                        <td>jane@gmail.com</td>
+                        <td>Jane</td>
+                        <td>Doe</td>
+                        <td>hardpassword</td>
+                        <td>staff</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>12344D</td>
+                        <td>alice@gmail.com</td>
+                        <td>Alice</td>
+                        <td>Mull</td>
+                        <td>Pass123</td>
+                        <td>Staff</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+    
+        </div>
+        <hr>
+        <div class="moreAccountDetails">
+            <span> Activate or Deactivate a Papel User Account</span>
+            <input type="text" placeholder=" User ID">
+            <button type="submit"> Activate </button>
+            <button type="reset" id="deactivatebtn"> Deactivate </button>
+        </div>
+        <hr>
+        <div class="moreAccountDetails">
+            <h3>Create a new Papel Staff or Admin Account</h3>
+            <h4> Enter User's Email </h4>
+            <input type="text" placeholder="Email">
+            <h4> Enter User's first name </h4>
+            <input type="text" placeholder="First Name">
+            <h4> Enter User's last name </h4>
+            <input type="text" placeholder="last Name">
+            <h4> Enter User's password </h4>
+            <input type="password" placeholder="New Password">
+            <h4> Type of account </h4>
+            <select>
+                <option value="staff"> Staff Account</option>
+                <option value="admin"> Admin Account</option>
+            </select>
+
+            <button type="submit"> Create Account </button>
+        </div>
+
+    </body>
+</html>
