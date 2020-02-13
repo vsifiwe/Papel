@@ -8,10 +8,10 @@ const pool = new Pool({
     idleTimeoutMillis: 30000,
 })
 
-all_account_transactions = (req, res) => {
-    const accountnumber = req.params.accountnumber;
+all_account_email = (req, res) => {
+    const email = req.params.email;
     pool.connect((err, client, done) => {
-        const query = "select * from transactions where t_accountnumber ='" + accountnumber + "'";
+        const query = "select * from accounts where owner = (select u_id from users where email like '" + email + "');";
         client.query(query, (error, result) => {
             done();
             if (error) {
@@ -31,4 +31,4 @@ all_account_transactions = (req, res) => {
     });
 }
 
-export default all_account_transactions;
+export default all_account_email;

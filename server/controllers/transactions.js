@@ -8,7 +8,7 @@ const pool = new Pool({
     idleTimeoutMillis: 30000,
 })
 
-exports.transactions_all = (req, res) => {
+transactions_all = (req, res) => {
     pool.connect((err, client, done) => {
         const query = 'SELECT * FROM transactions';
         client.query(query, (error, result) => {
@@ -31,7 +31,7 @@ exports.transactions_all = (req, res) => {
     });
 }
 
-exports.transactions_id = (req, res) => {
+transactions_id = (req, res) => {
     const id = req.params.id;
     pool.connect((err, client, done) => {
         const query = "SELECT * FROM transactions WHERE t_id ='" + id + "'";
@@ -53,3 +53,5 @@ exports.transactions_id = (req, res) => {
         });
     });
 }
+
+export default transactions_all , transactions_id;
