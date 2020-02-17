@@ -1,17 +1,5 @@
-import { Pool } from 'pg';
-
-
-
-const config = {
-    user: 'manzi',
-    database: 'api',
-    password: 'hello',
-    port: 5432,
-    max: 10, // max number of clients in the pool
-    idleTimeoutMillis: 30000,
-};
-
-const pool = new Pool(config);
+import { get_connection } from '../middleware/connect';
+const pool = get_connection();
 
 pool.on('connect', () => {
     console.log('connected to the Database');

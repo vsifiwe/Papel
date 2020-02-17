@@ -1,12 +1,5 @@
-import { Pool } from 'pg';
-const pool = new Pool({
-    user: 'manzi',
-    database: 'api',
-    password: 'hello',
-    port: 5432,
-    max: 10,
-    idleTimeoutMillis: 30000,
-})
+import { get_connection } from '../middleware/connect';
+const pool = get_connection();
 
 export function transactions_all(req, res) {
     pool.connect((err, client, done) => {

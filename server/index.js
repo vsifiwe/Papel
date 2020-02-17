@@ -11,3 +11,5 @@ app.use(routes);
 app.listen(port, () => {
     console.log(`Server running on http://${hostname}:${port}/`);
 });
+
+export default app;

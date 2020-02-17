@@ -1,20 +1,13 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.all_account_email = all_account_email;
 
-var _pg = require('pg');
+var _connect = require("../middleware/connect");
 
-var pool = new _pg.Pool({
-    user: 'manzi',
-    database: 'api',
-    password: 'hello',
-    port: 5432,
-    max: 10,
-    idleTimeoutMillis: 30000
-});
+var pool = (0, _connect.get_connection)();
 
 function all_account_email(req, res) {
     var email = req.params.email;

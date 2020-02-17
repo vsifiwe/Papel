@@ -6,16 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.transactions_all = transactions_all;
 exports.transactions_id = transactions_id;
 
-var _pg = require('pg');
+var _connect = require('../middleware/connect');
 
-var pool = new _pg.Pool({
-    user: 'manzi',
-    database: 'api',
-    password: 'hello',
-    port: 5432,
-    max: 10,
-    idleTimeoutMillis: 30000
-});
+var pool = (0, _connect.get_connection)();
 
 function transactions_all(req, res) {
     pool.connect(function (err, client, done) {

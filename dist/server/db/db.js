@@ -4,20 +4,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _pg = require('pg');
+var _connect = require('../middleware/connect');
 
 require('make-runnable');
 
-var config = {
-    user: 'manzi',
-    database: 'api',
-    password: 'hello',
-    port: 5432,
-    max: 10, // max number of clients in the pool
-    idleTimeoutMillis: 30000
-};
-
-var pool = new _pg.Pool(config);
+var pool = (0, _connect.get_connection)();
 
 pool.on('connect', function () {
     console.log('connected to the Database');
