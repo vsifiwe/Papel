@@ -26,9 +26,9 @@
     "nyc": "^15.0.0"
   },
   "scripts": {
-    "test": "mocha --recursive 'dist/server/tests/*.js '",
+    "test": "mocha --reporter spec './dist/server/test/*.js'",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/server/index.js && npm run coverage",
+    "start": "npm run build && node dist/server/index.js",
     "dev": "nodemon dist/server/index.js",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
