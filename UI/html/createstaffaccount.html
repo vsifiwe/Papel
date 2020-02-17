@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width">
+    <title>Papel Banking | Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../script/adminDashboard.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="header">
+        <span class="logo">PAPEL</span>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="../html/adminDashboard.html">Home</a></li>
+            <li><a href="../html/accountDashboard.html">View Accounts</a></li>
+            <li><a href="../html/deleteaccount.html"> Deactivate account </a></li>
+            <li id="active"><a href="../html/createstaffaccount.html">Create account</a></li>
+            <li><a href="UI/html/faq.html">FAQ</a></li>
+        </ul>
+    </header>
+
+    <div class="moreAccountDetails">
+        <h3>Create a new Papel Staff or Admin Account</h3>
+        <h4> Enter User's Email </h4>
+        <input type="text" placeholder="Email">
+        <h4> Enter User's first name </h4>
+        <input type="text" placeholder="First Name">
+        <h4> Enter User's last name </h4>
+        <input type="text" placeholder="last Name">
+        <h4> Enter User's password </h4>
+        <input type="password" placeholder="New Password">
+        <h4> Type of account </h4>
+        <select>
+            <option value="staff"> Staff Account</option>
+            <option value="admin"> Admin Account</option>
+        </select>
+
+        <button type="submit"> Create Account </button>
+    </div>
+
+</body>
+
+</html>

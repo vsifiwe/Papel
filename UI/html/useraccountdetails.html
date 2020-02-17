@@ -4,31 +4,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width = device-width">
-    <title>Papel Banking | Accounts</title>
+    <title>Papel Banking | Transaction Details</title>
     <link rel="stylesheet" href="../css/style.css">
-    <script src="../script/accountDashboard.js"></script>
+    <script src="../script/TransactionDetails.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
     <header class="header">
         <span class="logo">PAPEL</span>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
         <ul class="menu">
-            <li><a href="../html/StaffDashboard.html">Home</a></li>
-            <li id="active"><a href="../html/accountDashboard.html">View Accounts</a></li>
-            <li><a href="../html/faq.html">FAQ</a></li>
+            <li id="active"><a href="../html/UserDashboard.html">Home</a></li>
+            <li><a href="UI/html/faq.html">FAQ</a></li>
         </ul>
     </header>
 
-    <h2 id="mainpage">
-        Accounts
-    </h2>
-
     <div class="accountTable">
         <table>
-            <caption>All Papel Bank Accounts</caption>
+            <caption>Account Details</caption>
             <thead>
                 <th>Account ID</th>
                 <th>Account Number</th>
@@ -37,29 +33,10 @@
                 <th>Type </th>
                 <th>Status</th>
                 <th>Balance</th>
-
             </thead>
             <tbody>
                 <tr>
-                    <td><a href="../html/useraccountdetails.html">1F344D</a></td>
-                    <td>1234-123-123</td>
-                    <td>01-02-2013</td>
-                    <td>123RFD</td>
-                    <td>Savings</td>
-                    <td>Active</td>
-                    <td>10,000 RWF</td>
-                </tr>
-                <tr>
-                    <td><a href="../html/useraccountdetails.html">1F344D</a></td>
-                    <td>1234-123-123</td>
-                    <td>01-02-2013</td>
-                    <td>123RFD</td>
-                    <td>Savings</td>
-                    <td>Active</td>
-                    <td>10,000 RWF</td>
-                </tr>
-                <tr>
-                    <td><a href="../html/useraccountdetails.html">1F344D</a></td>
+                    <td>1F344D</td>
                     <td>1234-123-123</td>
                     <td>01-02-2013</td>
                     <td>123RFD</td>
@@ -70,9 +47,15 @@
             </tbody>
         </table>
 
+    </div>
+
+    <div class="moreAccountDetails">
+
+        <button type="reset" id="deactivatebtn"> Deactivate </button>
 
     </div>
 
 </body>
+
 
 </html>

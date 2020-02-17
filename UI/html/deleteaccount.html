@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width = device-width">
+    <title>Papel Banking | Accounts</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../script/accountDashboard.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <span class="logo">PAPEL</span>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="../html/adminDashboard.html">Home</a></li>
+            <li><a href="../html/accountDashboard.html">View Accounts</a></li>
+            <li id="active"><a href="../html/deleteaccount.html"> Deactivate account </a></li>
+            <li><a href="../html/createstaffaccount.html">Create account</a></li>
+            <li><a href="UI/html/faq.html">FAQ</a></li>
+        </ul>
+    </header>
+
+    <h2 id="mainpage">
+        Deactivate an account number
+    </h2>
+
+
+
+
+    <div class="moreAccountDetails">
+        <form>
+            <span> Enter a Papel bank Account Number to delete</span>
+            <input type="text" placeholder=" Account Number">
+            <button type="reset" id="deactivatebtn"> Deactivate </button>
+
+        </form>
+    </div>
+</body>
+
+</html>

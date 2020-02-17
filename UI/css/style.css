@@ -172,6 +172,7 @@ hr {
     height: 100%;
     width: 100%;
     display: inline-block;
+    padding-left: 20px 0 0 0;
 }
 
 #mainpagefaq {
@@ -303,6 +304,11 @@ table {
     width: 100%;
 }
 
+table tbody tr td a{
+  font-weight: bolder;
+  color: blue;
+}
+
 caption {
     font-size: 20px;
     font-weight: 400;
@@ -341,6 +347,9 @@ tfoot td {
 }
 
 .moreAccountDetails {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
     padding: 0 0 0 30px;
     margin: 50px 0 0 0;
 }
@@ -376,6 +385,7 @@ tfoot td {
 }
 
 .moreAccountDetails h3 {
+    padding-left: 0;
     color: white;
     margin-bottom: 20px;
 }
