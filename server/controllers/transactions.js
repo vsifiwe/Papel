@@ -47,3 +47,7 @@ export function transactions_id(req, res) {
     });
 }
 
+export function home(req, req) {
+    res.send("Welcome");
+}
+
