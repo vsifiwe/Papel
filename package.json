@@ -2,6 +2,9 @@
   "name": "Papel",
   "version": "1.0.0",
   "description": "[![Build Status](https://travis-ci.com/AsifiweM/Papel.svg?branch=master)](https://travis-ci.com/AsifiweM/Papel)",
+  "engines": {
+    "node": "12.14.1"
+  },
   "main": "index.js",
   "dependencies": {
     "babel-cli": "^6.26.0",
