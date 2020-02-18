@@ -16,14 +16,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var app = (0, _express2.default)();
 
+var PORT = process.env.PORT || 3000;
 
 var hostname = '127.0.0.1';
-var port = 3000;
 
 app.use(_routes2.default);
 
-app.listen(port, function () {
-    console.log('Server running on http://' + hostname + ':' + port + '/');
+app.listen(PORT, function () {
+    console.log('Server running on http://' + hostname + ':' + PORT + '/');
 });
 
 exports.default = app;

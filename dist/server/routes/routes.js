@@ -14,6 +14,9 @@ var _users = require('../controllers/users');
 
 var app = (0, _express.Router)();
 
+app.get("/", function (req, res) {
+  res.send("Welcome to papel");
+});
 app.get('/transactions', _transactions.transactions_all);
 app.get('/transactions/:id', _transactions.transactions_id);
 app.get('/accounts/:accountnumber/transactions', _accounts.all_account_transactions);
