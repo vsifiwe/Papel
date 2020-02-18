@@ -1,16 +1,17 @@
 import * as chai from 'chai';
 import app from '../index';
-import { chaiHttp } from 'chai-http';
+let chaiHttp = require('chai-Http');
 let expect = chai.expect;
 
-chai.use(chaiHttp);
+chai.use(chaiHttp)
+
 describe("Server!", () => {
-    it("", done => {
-        chai
-            .request(app)
-            .get("/")
+    it("should return something", done => {
+        chai.request(app)
+            .get("/transactions")
             .end((err, res) => {
                 expect(res).to.have.status(200);
+                expect(res.body.data).to.be.an('array');
                 done();
             });
     });
