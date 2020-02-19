@@ -1,7 +1,11 @@
 import express from 'express';
-const app = express();
 import routes from './routes/routes.js';
+import bodyparser from 'body-parser';
+const app = express();
 const PORT = process.env.PORT || 3000
+
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: true }));
 
 const hostname = '127.0.0.1';
 
