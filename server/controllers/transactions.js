@@ -1,100 +1,55 @@
-import Db from '../middleware/connect';
 
+
+import uuidv4 from 'uuid/v4';
+import connect from '../middleware/connect';
 
 class TransactionsController {
 
-    static getAll(req, res) {
-        const sql = 'select * from transactions';
-        Db.query(sql).then(response => {
-            return res.json({ status: response.status, data: response })
-        }).catch(error => console.log(error))
+    static async debit(req, res) {
+        const query = `INSERT INTO
+      transactions (transactionid, createdon, cashier, t_accountnumber, transactiontype, amount)
+      VALUES($1, $2, $3, $4, $5, $6)
+      returning *`;
+        const values = [
+            uuidv4(),
+            new Date(),
+            req.body.cashier,
+            req.body.accountnumber,
+            req.body.transactiontype,
+            req.body.amount
+        ];
+
+        try {
+            const { rows } = await connect.query(query, values);
+            return res.status(201).send(rows[0]);
+        } catch (error) {
+            return res.status(400).send(error);
+        }
     }
 
-    static getID(req, res) {
-        const id = req.params.transactionid;
-        const sql = 'select * from transactions where t_id = $1';
-        var data = [id];
-        Db.query(sql, data).then(response => {
-            return res.json({ status: response.status, data: response })
-        })
-            .catch(error => console.log(error))
+    static async getAll(req, res) {
+        const query = 'SELECT * FROM transactions';
+        try {
+            const { rows, rowCount } = await connect.query(query);
+            return res.status(200).send({ rows, rowCount });
+        } catch (error) {
+            return res.status(400).send(error);
+        }
     }
 
+    static async getId(req, res) {
+        const query = 'SELECT * FROM transactions WHERE id = $1';
+        try {
+            const { rows } = await connect.query(query, [req.params.id]);
+            if (!rows[0]) {
+                return res.status(404).send({ 'message': 'transaction not found' });
+            }
+            return res.status(200).send(rows[0]);
+        } catch (error) {
+            return res.status(400).send(error)
+        }
+    }
 
 }
 
-export default TransactionsController
-
-
-/*const transactions_all = async (req, res) => {
-    pool.connect((err, client, done) => {
-        const query = 'SELECT * FROM transactions';
-        client.query(query, (error, result) => {
-            done();
-            if (error) {
-                res.status(400).json({ error })
-            }
-            if (result.rows < '1') {
-                res.status(404).send({
-                    status: '404'
-                });
-            } else {
-                res.status(200).send({
-                    status: '200',
-                    data: result.rows,
-                });
-            }
-        });
-    });
-};
-
-*/
-
-
-/*export function transactions_all(req, res) {
-    pool.connect((err, client, done) => {
-        const query = 'SELECT * FROM transactions';
-        client.query(query, (error, result) => {
-            done();
-            if (error) {
-                res.status(400).json({ error })
-            }
-            if (result.rows < '1') {
-                res.status(404).send({
-                    status: '404',
-                });
-            } else {
-                res.status(200).send({
-                    status: '200',
-                    data: result.rows,
-
-                });
-            }
-        });
-    });
-}
-
-export function transactions_id(req, res) {
-    const id = req.params.id;
-    pool.connect((err, client, done) => {
-        const query = "SELECT * FROM transactions WHERE t_id ='" + id + "'";
-        client.query(query, (error, result) => {
-            done();
-            if (error) {
-                res.status(400).json({ error })
-            }
-            if (result.rows < '1') {
-                res.status(404).send({
-                    status: '404',
-                });
-            } else {
-                res.status(200).send({
-                    status: '200',
-                    data: result.rows,
-                });
-            }
-        });
-    });
-}
-*/
-
+export default TransactionsController;
