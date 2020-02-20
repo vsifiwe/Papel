@@ -8,21 +8,21 @@ import UsersControllers from '../controllers/users';
 import ActionControllers from '../controllers/actions'
 
 app.get("/", (req, res) => { res.send("Welcome to papel") });
-app.get('/transactions', TransactionsController.getAll);
-app.get('/transactions/:transactionid', TransactionsController.getId)
-app.get('/accounts', AccountsController.getAllAccounts)
-app.get('/accounts/:accountnumber/transactions', AccountsController.getAccountTransactions)
-app.get('/accounts/:accountnumber', AccountsController.getAccountDetails)
-app.get('/user/:email/accounts', UsersControllers.getUserAccounts)
-//app.post('/key', ActionControllers.keyGenerate)
+app.get('/transactions', Validate.verifyToken, TransactionsController.getAll);
+app.get('/transactions/:transactionid', Validate.verifyToken, TransactionsController.getId)
+app.get('/accounts', Validate.verifyToken, AccountsController.getAllAccounts)
+app.get('/accounts/:accountnumber/transactions', Validate.verifyToken, AccountsController.getAccountTransactions)
+app.get('/accounts/:accountnumber', Validate.verifyToken, AccountsController.getAccountDetails)
+app.get('/user/:email/accounts', Validate.verifyToken, UsersControllers.getUserAccounts)
 app.post('/auth/signup', ActionControllers.signUp)
-//app.post('/accounts/create', ActionControllers.createBankAccount)
-app.post('/auth/signin', Validate.verifyToken, ActionControllers.signIn)
-//app.post('/accounts', AccountsController.createBankAccount)
-// app.post('/accounts/:accountnumber/debit')
-// app.get('/accounts/:accountnumber/transactions', all_account_transactions);
-// app.get('/user/:email/accounts', all_account_email);
-// app.get('/accounts', all_accounts);
-// app.get('/accounts/:accountnumber', specific_account_details);
+app.post('/accounts/create', Validate.verifyToken, ActionControllers.createBankAccount)
+app.post('/auth/signin', ActionControllers.signIn)
+app.patch('/accounts/:accountnumber', Validate.verifyToken, ActionControllers.setNewStatus)
+app.delete('/accounts/:accountnumber', Validate.verifyToken, ActionControllers.deleteAccount)
+app.post('/transactions/:accountnumber/debit', Validate.verifyToken, TransactionsController.debit)
+app.post('/transactions/:accountnumber/credit', Validate.verifyToken, TransactionsController.credit)
+app.get('*', (req, res) => { res.send('The Page you are trying to access does not exist') })
+app.post('*', (req, res) => { res.send('The Page you are trying to access does not exist') })
+app.delete('*', (req, res) => { res.send('The Page you are trying to access does not exist') })
 
 export default app;

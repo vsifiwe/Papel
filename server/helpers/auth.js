@@ -15,12 +15,16 @@ class Helper {
         return /\S+@\S+\.\S+/.test(email);
     }
 
+    static hasNumber(name) {
+        return /\d/.test(name);
+    }
+
+    static isValidPassword(password) {
+        return /^[0-9a-zA-Z]+$/.test(password)
+    }
+
     static generateToken(id) {
-        const token = jwt.sign({
-            userId: id
-        },
-            process.env.SECRET, { expiresIn: '7d' }
-        );
+        const token = jwt.sign({ userId: id }, process.env.SECRET, { expiresIn: '7d' });
         return token;
     }
 }

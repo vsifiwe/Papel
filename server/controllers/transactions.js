@@ -1,22 +1,63 @@
 
-
-import uuidv4 from 'uuid/v4';
 import connect from '../middleware/connect';
 
 class TransactionsController {
 
     static async debit(req, res) {
-        const query = `INSERT INTO
-      transactions (transactionid, createdon, cashier, t_accountnumber, transactiontype, amount)
-      VALUES($1, $2, $3, $4, $5, $6)
-      returning *`;
+
+        let query = 'SELECT newbalance FROM transactions where t_accountnumber = $1 ORDER BY createdon LIMIT 1'
+        let data = [req.body.accountnumber]
+
+        let { rows } = await connect.query(query, data)
+        console.log(rows[0])
+
+        query = `INSERT INTO 
+        transactions (createdon, cashier, t_accountnumber, transactiontype, amount, oldbalance, newbalance)
+        VALUES($1, $2, $3, $4, $5, $6, $7)
+        returning *`;
+
+        let balance = Number(rows[0]) - Number(req.body.amount)
+
         const values = [
-            uuidv4(),
             new Date(),
             req.body.cashier,
-            req.body.accountnumber,
-            req.body.transactiontype,
-            req.body.amount
+            req.params.accountnumber,
+            'debit',
+            req.body.amount,
+            rows.newbalance,
+            balance
+        ];
+
+        try {
+            const { rows } = await connect.query(query, values);
+            return res.status(201).send(rows[0]);
+        } catch (error) {
+            return res.status(400).send(error);
+        }
+    }
+
+    static async credit(req, res) {
+        let query = 'SELECT newbalance FROM transactions where t_accountnumber = $1 ORDER BY createdon LIMIT 1'
+        let data = [req.body.accountnumber]
+
+        let { rows } = await connect.query(query, data)
+        console.log(rows[0])
+
+        query = `INSERT INTO 
+        transactions (createdon, cashier, t_accountnumber, transactiontype, amount, oldbalance, newbalance)
+        VALUES($1, $2, $3, $4, $5, $6, $7)
+        returning *`;
+
+        let balance = Number(rows[0]) - Number(req.body.amount)
+
+        const values = [
+            new Date(),
+            req.body.cashier,
+            req.params.accountnumber,
+            'debit',
+            req.body.amount,
+            rows.newbalance,
+            balance
         ];
 
         try {

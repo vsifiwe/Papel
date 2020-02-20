@@ -4,18 +4,21 @@ import connect from '../middleware/connect';
 class Validate {
 
     static async verifyToken(req, res, next) {
-        const token = req.headers['authorization'];
+        const token = req.get('x-access-token')
         if (!token) {
-            return res.status(400).send({ 'message': 'Token is not provided' });
+            return res.status(400).send({ 'message': 'Please provide a token' });
         }
         try {
-            const decoded = jwt.verify(token, process.env.SECRET);
-            const text = 'SELECT * FROM users WHERE id = $1';
-            const { rows } = await connect.query(text, [decoded.userid]);
+            const decoded = jwt.decode(token, { complete: true });
+            const userid = decoded.payload.userId
+            const query = 'SELECT * FROM users WHERE userid = $1';
+            const data = [
+                userid
+            ]
+            const { rows } = await connect.query(query, data);
             if (!rows[0]) {
                 return res.status(400).send({ 'message': 'This token does not exist' });
             }
-            req.user = { id: decoded.userId };
             next();
         } catch (error) {
             return res.status(400).send(error);

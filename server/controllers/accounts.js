@@ -1,12 +1,24 @@
-import uuidv4 from 'uuid/v4';
 import connect from '../middleware/connect';
 
 class AccountsController {
 
     static async getAllAccounts(req, res) {
-        const query = 'SELECT * FROM accounts';
+
+        let query;
+        let values;
+
+        if (!req.query.status) {
+            query = 'SELECT * FROM accounts'
+            values = []
+        } else {
+            query = "SELECT * FROM accounts where status like $1"
+            values = [
+                req.query.status
+            ]
+        }
+
         try {
-            const { rows, rowCount } = await connect.query(query);
+            const { rows, rowCount } = await connect.query(query, values);
             return res.status(200).send({ rows, rowCount });
         } catch (error) {
             return res.status(400).send(error);
