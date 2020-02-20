@@ -34,7 +34,6 @@
     "assert": "^2.0.0"
   },
   "scripts": {
-    // "test": "mocha",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "start": "npm run build && node dist/server/index.js",
     "dev": "nodemon server/index.js --exec babel-node --",
