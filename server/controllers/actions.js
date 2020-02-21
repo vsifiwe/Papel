@@ -121,7 +121,7 @@ class ActionControllers {
 
     static async setPriviledge(req, res) {
 
-        if (!req.params.userid) {
+        if (!req.body.userid) {
             return res.status(400).send({ 'message': 'Enter User ID' });
         }
 

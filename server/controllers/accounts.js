@@ -39,7 +39,7 @@ class AccountsController {
     }
 
     static async getAccountDetails(req, res) {
-        const query = 'select a.createdon, a.accountnumber, u.email, a.a_type, a.status, a.balance from accounts a, users u where a.owner=u.u_id and a.accountnumber = $1'
+        const query = 'select a.createdon, a.accountnumber, u.email, a.accounttype, a.status, a.balance from accounts a, users u where a.owner=u.u_userid and a.accountnumber = $1'
         try {
             const { rows } = await connect.query(query, [req.params.accountnumber]);
             if (!rows[0]) {

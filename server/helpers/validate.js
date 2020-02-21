@@ -17,11 +17,11 @@ class Validate {
             ]
             const { rows } = await connect.query(query, data);
             if (!rows[0]) {
-                return res.status(400).send({ 'message': 'This token does not exist' });
+                return res.status(400).send({ 'message': 'No bank accounts linked with this email' });
             }
             next();
         } catch (error) {
-            return res.status(400).send(error);
+            return res.status(400).send('An error occured');
         }
     }
 }

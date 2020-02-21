@@ -3,7 +3,7 @@ import connect from '../middleware/connect';
 class UsersControllers {
 
     static async getUserAccounts(req, res) {
-        const query = 'select * from accounts where owner = (select u_id from users where email like $1';
+        const query = 'select * from accounts where owner = (select userid from users where email like $1';
 
         try {
             const { rows } = await connect.query(query, [req.params.email]);
