@@ -160,6 +160,8 @@ describe('test actions', () => {
     })
 })
 
+//"test": "nyc --reporter=text mocha --require babel-register --require babel-polyfill ./server/tests/*.js --timeout 80000 --exit",
+
 
 
 
