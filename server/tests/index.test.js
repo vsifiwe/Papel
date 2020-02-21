@@ -124,7 +124,7 @@ describe('test actions', () => {
         done()
     })
     it('signin should be a function', () => {
-        expect(ActionControllers.signIn).to.throw(Error)
+        expect(ActionControllers.signIn).to.throw(Error);
         done()
     })
     it('createBankAccount should be a function', () => {
