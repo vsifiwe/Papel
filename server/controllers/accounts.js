@@ -21,7 +21,7 @@ class AccountsController {
             const { rows, rowCount } = await connect.query(query, values);
             return res.status(200).send({ rows, rowCount });
         } catch (error) {
-            return res.status(400).send(error);
+            return res.status(400).send('The action could not be completed');
         }
     }
 
@@ -34,7 +34,7 @@ class AccountsController {
             }
             return res.status(200).send(rows[0]);
         } catch (error) {
-            return res.status(400).send(error)
+            return res.status(400).send('The action could not be completed')
         }
     }
 
@@ -47,7 +47,7 @@ class AccountsController {
             }
             return res.status(200).send(rows[0]);
         } catch (error) {
-            return res.status(400).send(error)
+            return res.status(400).send('The action could not be completed')
         }
     }
 
