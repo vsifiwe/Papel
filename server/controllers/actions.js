@@ -29,7 +29,7 @@ class ActionControllers {
             req.body.firstname,
             req.body.lastname,
             req.body.type,
-            req.body.isadmin
+            false
         ];
 
         try {
@@ -116,6 +116,26 @@ class ActionControllers {
             return res.status(201).send({ rows });
         } catch (error) {
             return res.status(400).send(error);
+        }
+    }
+
+    static async setPriviledge(req, res) {
+
+        if (!req.params.userid) {
+            return res.status(400).send({ 'message': 'Enter User ID' });
+        }
+
+        const query = `UPDATE users SET isadmin = $1 where userid = $2 returning *`;
+        const values = [
+            req.params.type,
+            req.body.userid
+        ];
+
+        try {
+            const { rows } = await connect.query(query, values);
+            return res.status(201).send({ rows });
+        } catch (error) {
+            return res.status(400).send('Check Entered information');
         }
     }
 

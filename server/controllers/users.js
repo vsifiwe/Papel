@@ -9,7 +9,7 @@ class UsersControllers {
             const { rows } = await connect.query(query, [req.params.email]);
             return res.status(201).send(rows[0]);
         } catch (error) {
-            return res.status(400).send(error);
+            return res.status(400).send('The action could not be completed');
         }
     }
 
