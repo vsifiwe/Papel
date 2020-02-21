@@ -1,5 +1,5 @@
 {
-  "name": "Papel",
+  "name": "papel",
   "version": "1.0.0",
   "description": "[![Build Status](https://travis-ci.com/AsifiweM/Papel.svg?branch=master)](https://travis-ci.com/AsifiweM/Papel)",
   "engines": {
@@ -30,9 +30,10 @@
     "pg": "^7.18.1",
     "rimraf": "^3.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "assert": "^2.0.0"
+  },
   "scripts": {
-    "test": "mocha -- timeout 10000 dist/server/tests",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "start": "npm run build && node dist/server/index.js",
     "dev": "nodemon server/index.js --exec babel-node --",
