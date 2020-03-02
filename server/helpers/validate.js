@@ -4,9 +4,10 @@ import connect from '../middleware/connect';
 class Validate {
 
     static async verifyToken(req, res, next) {
-        const token = req.get('x-access-token')
+        const token = req.headers['x-access-token']
+        // const token = req.get('x-access-token')
         if (!token) {
-            return res.status(400).send({ 'message': 'Please provide a token' });
+            // return res.send({ 'message': 'Please provide a token' });
         }
         try {
             const decoded = jwt.decode(token, { complete: true });
@@ -17,11 +18,11 @@ class Validate {
             ]
             const { rows } = await connect.query(query, data);
             if (!rows[0]) {
-                return res.status(400).send({ 'message': 'No bank accounts linked with this email' });
+                // return res.send({ 'message': 'No bank accounts linked with this email' });
             }
             next();
         } catch (error) {
-            return res.status(400).send('An error occured');
+            // return res.send(error);
         }
     }
 }
