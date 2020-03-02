@@ -449,7 +449,7 @@ describe('test actions', () => {
             .set('x-access-token', token)
             .end((err, res) => {
                 expect(res).to.have.status(200)
-                done()
+                done();
             })
     })
 

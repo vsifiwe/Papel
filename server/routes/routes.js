@@ -7,7 +7,7 @@ let swaggerDocument = require('../../swagger.json')
 import TransactionsController from '../controllers/transactions';
 import AccountsController from '../controllers/accounts';
 import UsersControllers from '../controllers/users';
-import ActionControllers from '../controllers/actions'
+import ActionControllers from '../controllers/actions';
 
 
 app.use('/api-docs', swaggerUI.serve);
