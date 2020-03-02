@@ -139,13 +139,6 @@
                         "required": true
                     },
                     {
-                        "name": "date",
-                        "in": "formData",
-                        "required": true,
-                        "type": "date",
-                        "format": "date"
-                    },
-                    {
                         "name": "type",
                         "in": "formData",
                         "required": true,
@@ -333,13 +326,6 @@
                         "required": true
                     },
                     {
-                        "name": "date",
-                        "in": "formData",
-                        "required": true,
-                        "type": "date",
-                        "format": "date"
-                    },
-                    {
                         "name": "amount",
                         "in": "formData",
                         "required": true,
@@ -356,9 +342,6 @@
                     },
                     "400": {
                         "description": "account must be active to be used or insufficient account balance"
-                    },
-                    "403": {
-                        "description": "Forbidden only cashier can able to do this"
                     },
                     "401": {
                         "description": "Unauthorised: You must login to proceed"
@@ -389,13 +372,6 @@
                         "required": true
                     },
                     {
-                        "name": "date",
-                        "in": "formData",
-                        "required": true,
-                        "type": "date",
-                        "format": "date"
-                    },
-                    {
                         "name": "amount",
                         "in": "formData",
                         "required": true,
@@ -412,9 +388,6 @@
                     },
                     "400": {
                         "description": "account must be active to be used or insufficient account balance"
-                    },
-                    "403": {
-                        "description": "Forbidden only cashier can able to do this"
                     },
                     "401": {
                         "description": "Unauthorised: You must login to proceed"
@@ -447,9 +420,6 @@
                     "responses": {
                         "200": {
                             "description": "display all user accounts in the database"
-                        },
-                        "403": {
-                            "description": "Forbidden only admin can be able to do this"
                         },
                         "401": {
                             "description": "Unauthorised: Authorization not supplied, You must signin to proceed"
@@ -496,9 +466,6 @@
                         "401": {
                             "description": "Not authorized, you must sign in"
                         },
-                        "403": {
-                            "description": "Forbidden only admin can be able to do this"
-                        },
                         "400": {
                             "description": "status can only be ACTIVE or DORMANT"
                         }
@@ -537,9 +504,6 @@
                         },
                         "401": {
                             "description": "Not authorized, you must sign in"
-                        },
-                        "403": {
-                            "description": "Forbidden only admin can be able to do this"
                         }
                     }
                 }

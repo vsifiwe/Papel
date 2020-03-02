@@ -453,6 +453,42 @@ describe('test actions', () => {
             })
     })
 
+    it('Get Id should work', () => {
+
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZTFiMzFlZC1jYzJjLTQ3NTUtYjcyZi03YTk2Y2Y1ZmNlZGYiLCJpYXQiOjE1ODIyNzY1NTIsImV4cCI6MTU4Mjg4MTM1Mn0.sg8bky5DqluMi72XCqYn343jKkLWjMVj3b0GZ6_kE2U'
+        chai.request(routes)
+            .get('/transactions/4')
+            .set('x-access-token', token)
+            .end((err, res) => {
+                expect(res).to.have.status(200)
+                done();
+            })
+    })
+
+    it('Get should get all accounts', () => {
+
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZTFiMzFlZC1jYzJjLTQ3NTUtYjcyZi03YTk2Y2Y1ZmNlZGYiLCJpYXQiOjE1ODIyNzY1NTIsImV4cCI6MTU4Mjg4MTM1Mn0.sg8bky5DqluMi72XCqYn343jKkLWjMVj3b0GZ6_kE2U'
+        chai.request(routes)
+            .get('/accounts')
+            .set('x-access-token', token)
+            .end((err, res) => {
+                expect(res).to.have.status(200)
+                done();
+            })
+    })
+    it('Get should get all dormant accounts', () => {
+
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZTFiMzFlZC1jYzJjLTQ3NTUtYjcyZi03YTk2Y2Y1ZmNlZGYiLCJpYXQiOjE1ODIyNzY1NTIsImV4cCI6MTU4Mjg4MTM1Mn0.sg8bky5DqluMi72XCqYn343jKkLWjMVj3b0GZ6_kE2U'
+        chai.request(routes)
+            .get('/accounts/dormant')
+            .set('x-access-token', token)
+            .end((err, res) => {
+                expect(res).to.have.status(200)
+                done();
+            })
+    })
+
+
 
 
 })
