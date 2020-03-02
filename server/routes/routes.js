@@ -1,12 +1,17 @@
 import { Router } from 'express';
 const app = Router();
 import Validate from '../helpers/validate'
+import swaggerUI from 'swagger-ui-express'
+let swaggerDocument = require('../../swagger.json')
 
 import TransactionsController from '../controllers/transactions';
 import AccountsController from '../controllers/accounts';
 import UsersControllers from '../controllers/users';
-import ActionControllers from '../controllers/actions'
+import ActionControllers from '../controllers/actions';
 
+
+app.use('/api-docs', swaggerUI.serve);
+app.get('/api-docs', swaggerUI.setup(swaggerDocument));
 app.get("/", (req, res) => { res.send("Welcome to papel") });
 app.get('/transactions', Validate.verifyToken, TransactionsController.getAll);
 app.get('/transactions/:transactionid', Validate.verifyToken, TransactionsController.getId)
