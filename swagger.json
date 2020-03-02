@@ -133,8 +133,8 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
-                        "in": "header",
+                        "name": "x-access-token",
+                        "in": "headers",
                         "type": "string",
                         "required": true
                     },
@@ -176,7 +176,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "x-access-token",
                         "in": "header",
                         "type": "string",
                         "required": true
@@ -212,7 +212,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "x-access-token",
                         "in": "header",
                         "required": true,
                         "type": "string"
@@ -248,7 +248,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "x-access-token",
                         "in": "header",
                         "required": true,
                         "type": "string"
@@ -284,7 +284,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "x-access-token",
                         "in": "header",
                         "required": true,
                         "type": "string"
@@ -320,7 +320,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "x-access-token",
                         "in": "header",
                         "type": "string",
                         "required": true
@@ -366,7 +366,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "x-access-token",
                         "in": "header",
                         "type": "string",
                         "required": true
@@ -411,7 +411,7 @@
                     ],
                     "parameters": [
                         {
-                            "name": "Authorization",
+                            "name": "x-access-token",
                             "in": "header",
                             "required": true,
                             "type": "string"
@@ -444,7 +444,7 @@
                     ],
                     "parameters": [
                         {
-                            "name": "Authorization",
+                            "name": "x-access-token",
                             "in": "header",
                             "required": true,
                             "type": "string"
@@ -489,7 +489,7 @@
                     ],
                     "parameters": [
                         {
-                            "name": "Authorization",
+                            "name": "x-access-token",
                             "in": "header",
                             "required": true,
                             "type": "string"
