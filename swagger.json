@@ -6,7 +6,7 @@
         "description": "[![Build Status](https://travis-ci.com/AsifiweM/Papel.svg?branch=master)](https://travis-ci.com/AsifiweM/Papel)",
         "contact": {}
     },
-    "host": "damp-garden-49759.herokuapp.com",
+    "host": "https://damp-garden-49759.herokuapp.com/",
     "securityDefinitions": {},
     "schemes": [
         "http",
@@ -24,7 +24,7 @@
                 "description": "",
                 "summary": "Sign up",
                 "tags": [
-                    "Sign UP"
+                    "User Sign up"
                 ],
                 "operationId": "signUp",
                 "deprecated": false,
@@ -43,13 +43,13 @@
                         "format": "email"
                     },
                     {
-                        "name": "firstName",
+                        "name": "firstname",
                         "in": "formData",
                         "required": true,
                         "type": "string"
                     },
                     {
-                        "name": "lastName",
+                        "name": "lastname",
                         "in": "formData",
                         "required": true,
                         "type": "string"
@@ -80,7 +80,7 @@
                 "description": "",
                 "summary": "user login",
                 "tags": [
-                    "sign"
+                    "User Sign In"
                 ],
                 "operationId": "Signin",
                 "deprecated": false,
@@ -121,9 +121,9 @@
                 "description": "",
                 "summary": "user create account",
                 "tags": [
-                    "Client"
+                    "User Operation"
                 ],
-                "operationId": "createAccount",
+                "operationId": "Create Bank Account",
                 "deprecated": false,
                 "produces": [
                     "application/json"
@@ -162,9 +162,9 @@
         "/user/{email}/accounts": {
             "get": {
                 "description": "",
-                "summary": "User can view all accounts with respect to user's email",
+                "summary": "View all accounts associated with email.",
                 "tags": [
-                    "Client"
+                    "User Operation"
                 ],
                 "operationId": "userAccounts",
                 "deprecated": false,
@@ -184,7 +184,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "All accounts will be displayed"
+                        "description": "Operation Successful"
                     },
                     "400": {
                         "description": "incorrect email"
@@ -198,9 +198,9 @@
         "/accounts/{accountNo}": {
             "get": {
                 "description": "",
-                "summary": "user specific account",
+                "summary": "Specific Bank account",
                 "tags": [
-                    "Client"
+                    "User Operation"
                 ],
                 "operationId": "specificAccount",
                 "deprecated": false,
@@ -220,7 +220,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "display specified user account"
+                        "description": "display specified user's bank account"
                     },
                     "400": {
                         "description": "account number not found"
@@ -234,9 +234,9 @@
         "/accounts/{accountNo}/transactions": {
             "get": {
                 "description": "",
-                "summary": "All accounts transactions",
+                "summary": "Unique bank account's transactions",
                 "tags": [
-                    "Client"
+                    "User Operation"
                 ],
                 "operationId": "transaction",
                 "deprecated": false,
@@ -270,9 +270,9 @@
         "/transactions/{transactionId}": {
             "get": {
                 "description": "",
-                "summary": "view specific account's transaction",
+                "summary": "View accounts' transactions",
                 "tags": [
-                    "Client"
+                    "User Operation"
                 ],
                 "operationId": "transaction",
                 "deprecated": false,
@@ -306,9 +306,9 @@
         "/transactions/{accountNo}/debit": {
             "post": {
                 "description": "",
-                "summary": "cashier debit",
+                "summary": "Debit account",
                 "tags": [
-                    "Cashier"
+                    "Staff operations"
                 ],
                 "operationId": "debitAccount",
                 "deprecated": false,
@@ -352,9 +352,9 @@
         "/transactions/{accountNo}/credit": {
             "post": {
                 "description": "",
-                "summary": "cashier credit",
+                "summary": "Credit account",
                 "tags": [
-                    "Cashier"
+                    "Staff operations"
                 ],
                 "operationId": "creditAccount",
                 "deprecated": false,
@@ -397,9 +397,9 @@
             "/accounts": {
                 "get": {
                     "description": "",
-                    "summary": "view all accounts and sort the out",
+                    "summary": "View all accounts",
                     "tags": [
-                        "ADMIN"
+                        "Staff operations"
                     ],
                     "operationId": "transaction",
                     "deprecated": false,
@@ -430,9 +430,9 @@
             "/account/{accountNo}": {
                 "patch": {
                     "description": "",
-                    "summary": "change account's status",
+                    "summary": "change Account's status",
                     "tags": [
-                        "ADMIN"
+                        "Staff operations"
                     ],
                     "operationId": "accountStatus",
                     "deprecated": false,
@@ -475,9 +475,9 @@
             "/accounts/{accountNo}": {
                 "delete": {
                     "description": "",
-                    "summary": "delete account number",
+                    "summary": "Delete bank account",
                     "tags": [
-                        "ADMIN"
+                        "Staff operations"
                     ],
                     "operationId": "rejected",
                     "deprecated": false,
@@ -508,68 +508,6 @@
                     }
                 }
             },
-            "/auth/create": {
-                "post": {
-                    "description": "",
-                    "summary": "create a staff account",
-                    "tags": [
-                        "ADMIN"
-                    ],
-                    "operationId": "createStaff",
-                    "deprecated": false,
-                    "produces": [
-                        "application/json"
-                    ],
-                    "consumes": [
-                        "application/x-www-form-urlencoded"
-                    ],
-                    "parameters": [
-                        {
-                            "name": "email",
-                            "in": "formData",
-                            "required": true,
-                            "type": "string",
-                            "format": "email"
-                        },
-                        {
-                            "name": "firstName",
-                            "in": "formData",
-                            "required": true,
-                            "type": "string"
-                        },
-                        {
-                            "name": "lastName",
-                            "in": "formData",
-                            "required": true,
-                            "type": "string"
-                        },
-                        {
-                            "name": "password",
-                            "in": "formData",
-                            "required": true,
-                            "type": "string",
-                            "format": "password"
-                        },
-                        {
-                            "name": "is_admin",
-                            "in": "formData",
-                            "required": true,
-                            "type": "boolean"
-                        }
-                    ],
-                    "responses": {
-                        "201": {
-                            "description": "staff account successfuly created"
-                        },
-                        "400": {
-                            "description": "parameter is required"
-                        },
-                        "409": {
-                            "description": "Email already exist"
-                        }
-                    }
-                }
-            },
             "definitions": {
                 "signin": {
                     "type": "object",
@@ -588,10 +526,10 @@
                 "signup": {
                     "type": "object",
                     "properties": {
-                        "firstName": {
+                        "firstname": {
                             "type": "string"
                         },
-                        "lastName": {
+                        "lastname": {
                             "type": "string"
                         },
                         "email": {

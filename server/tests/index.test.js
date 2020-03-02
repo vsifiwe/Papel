@@ -402,8 +402,23 @@ describe('test actions', () => {
         const token = process.env.token
 
         chai.request(routes)
+            .post('/auth/signin')
+            .type('form')
+            .send({ '_method': 'post', 'email': 'jackdoe@gmail.com', 'password': 'Hardpass' })
+            .end((err, res) => {
+                expect(res).to.have.status(200)
+                done()
+            })
+    })
+
+    it('signin should work', () => {
+
+        const token = process.env.token
+
+        chai.request(routes)
             .post('/auth/signup')
-            .send(DumbData)
+            .type('form')
+            .send({ '_method': 'post', 'email': 'jackdoe@gmail.com', 'password': 'Hardpass', 'firstname': 'Jack', 'lastname': 'Doe', 'type': 'staff' })
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
