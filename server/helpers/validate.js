@@ -4,8 +4,8 @@ import connect from '../middleware/connect';
 class Validate {
 
     static async verifyToken(req, res, next) {
-        const token = req.headers['x-access-token']
-        // const token = req.get('x-access-token')
+        const token = req.headers['Authorization']
+        // const token = req.get('Authorization')
         if (!token) {
             // return res.send({ 'message': 'Please provide a token' });
         }

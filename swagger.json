@@ -6,7 +6,7 @@
         "description": "[![Build Status](https://travis-ci.com/AsifiweM/Papel.svg?branch=master)](https://travis-ci.com/AsifiweM/Papel)",
         "contact": {}
     },
-    "host": "https://damp-garden-49759.herokuapp.com/",
+    "host": "https://damp-garden-49759.herokuapp.com",
     "securityDefinitions": {},
     "schemes": [
         "http",
@@ -133,7 +133,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "x-access-token",
+                        "name": "Authorization",
                         "in": "headers",
                         "type": "string",
                         "required": true
@@ -176,7 +176,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "x-access-token",
+                        "name": "Authorization",
                         "in": "header",
                         "type": "string",
                         "required": true
@@ -195,7 +195,7 @@
                 }
             }
         },
-        "/accounts/{accountNo}": {
+        "/accounts/{accountnumber}": {
             "get": {
                 "description": "",
                 "summary": "Specific Bank account",
@@ -212,7 +212,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "x-access-token",
+                        "name": "Authorization",
                         "in": "header",
                         "required": true,
                         "type": "string"
@@ -231,7 +231,7 @@
                 }
             }
         },
-        "/accounts/{accountNo}/transactions": {
+        "/accounts/{accountnumber}/transactions": {
             "get": {
                 "description": "",
                 "summary": "Unique bank account's transactions",
@@ -248,7 +248,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "x-access-token",
+                        "name": "Authorization",
                         "in": "header",
                         "required": true,
                         "type": "string"
@@ -267,7 +267,7 @@
                 }
             }
         },
-        "/transactions/{transactionId}": {
+        "/transactions/{transactionid}": {
             "get": {
                 "description": "",
                 "summary": "View accounts' transactions",
@@ -284,7 +284,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "x-access-token",
+                        "name": "Authorization",
                         "in": "header",
                         "required": true,
                         "type": "string"
@@ -303,7 +303,7 @@
                 }
             }
         },
-        "/transactions/{accountNo}/debit": {
+        "/transactions/{accountnumber}/debit": {
             "post": {
                 "description": "",
                 "summary": "Debit account",
@@ -320,7 +320,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "x-access-token",
+                        "name": "Authorization",
                         "in": "header",
                         "type": "string",
                         "required": true
@@ -349,7 +349,7 @@
                 }
             }
         },
-        "/transactions/{accountNo}/credit": {
+        "/transactions/{accountnumber}/credit": {
             "post": {
                 "description": "",
                 "summary": "Credit account",
@@ -366,7 +366,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "x-access-token",
+                        "name": "Authorization",
                         "in": "header",
                         "type": "string",
                         "required": true
@@ -393,155 +393,153 @@
                         "description": "Unauthorised: You must login to proceed"
                     }
                 }
-            },
-            "/accounts": {
-                "get": {
-                    "description": "",
-                    "summary": "View all accounts",
-                    "tags": [
-                        "Staff operations"
-                    ],
-                    "operationId": "transaction",
-                    "deprecated": false,
-                    "produces": [
-                        "application/json"
-                    ],
-                    "consumes": [
-                        "application/x-www-form-urlencoded"
-                    ],
-                    "parameters": [
-                        {
-                            "name": "x-access-token",
-                            "in": "header",
-                            "required": true,
-                            "type": "string"
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "display all user accounts in the database"
-                        },
-                        "401": {
-                            "description": "Unauthorised: Authorization not supplied, You must signin to proceed"
-                        }
+            }
+        },
+        "/accounts": {
+            "get": {
+                "description": "",
+                "summary": "View all accounts",
+                "tags": [
+                    "Staff operations"
+                ],
+                "operationId": "transaction",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
                     }
-                }
-            },
-            "/account/{accountNo}": {
-                "patch": {
-                    "description": "",
-                    "summary": "change Account's status",
-                    "tags": [
-                        "Staff operations"
-                    ],
-                    "operationId": "accountStatus",
-                    "deprecated": false,
-                    "produces": [
-                        "application/json"
-                    ],
-                    "consumes": [
-                        "application/x-www-form-urlencoded"
-                    ],
-                    "parameters": [
-                        {
-                            "name": "x-access-token",
-                            "in": "header",
-                            "required": true,
-                            "type": "string"
-                        },
-                        {
-                            "name": "status",
-                            "in": "path",
-                            "required": true,
-                            "type": "text"
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "account changed to status"
-                        },
-                        "404": {
-                            "description": "account not found"
-                        },
-                        "401": {
-                            "description": "Not authorized, you must sign in"
-                        },
-                        "400": {
-                            "description": "status can only be ACTIVE or DORMANT"
-                        }
-                    }
-                }
-            },
-            "/accounts/{accountNo}": {
-                "delete": {
-                    "description": "",
-                    "summary": "Delete bank account",
-                    "tags": [
-                        "Staff operations"
-                    ],
-                    "operationId": "rejected",
-                    "deprecated": false,
-                    "produces": [
-                        "application/json"
-                    ],
-                    "consumes": [
-                        "application/x-www-form-urlencoded"
-                    ],
-                    "parameters": [
-                        {
-                            "name": "x-access-token",
-                            "in": "header",
-                            "required": true,
-                            "type": "string"
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "account successfully deleted"
-                        },
-                        "404": {
-                            "description": "account not found"
-                        },
-                        "401": {
-                            "description": "Not authorized, you must sign in"
-                        }
-                    }
-                }
-            },
-            "definitions": {
-                "signin": {
-                    "type": "object",
-                    "properties": {
-                        "email": {
-                            "type": "string"
-                        },
-                        "password": {
-                            "type": "string"
-                        }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "display all user accounts in the database"
                     },
-                    "xml": {
-                        "name": "User"
+                    "401": {
+                        "description": "Unauthorised: Authorization not supplied, You must signin to proceed"
+                    }
+                }
+            }
+        },
+        "/account/{accountnumber}": {
+            "patch": {
+                "description": "",
+                "summary": "change Account's status",
+                "tags": [
+                    "Staff operations"
+                ],
+                "operationId": "accountStatus",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "required": true,
+                        "type": "text"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "account changed to status"
+                    },
+                    "404": {
+                        "description": "account not found"
+                    },
+                    "401": {
+                        "description": "Not authorized, you must sign in"
+                    },
+                    "400": {
+                        "description": "status can only be ACTIVE or DORMANT"
+                    }
+                }
+            },
+            "delete": {
+                "description": "",
+                "summary": "Delete bank account",
+                "tags": [
+                    "Staff operations"
+                ],
+                "operationId": "rejected",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "account successfully deleted"
+                    },
+                    "404": {
+                        "description": "account not found"
+                    },
+                    "401": {
+                        "description": "Not authorized, you must sign in"
+                    }
+                }
+            }
+        },
+        "definitions": {
+            "signin": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
                     }
                 },
-                "signup": {
-                    "type": "object",
-                    "properties": {
-                        "firstname": {
-                            "type": "string"
-                        },
-                        "lastname": {
-                            "type": "string"
-                        },
-                        "email": {
-                            "type": "string"
-                        },
-                        "password": {
-                            "type": "string"
-                        }
+                "xml": {
+                    "name": "User"
+                }
+            },
+            "signup": {
+                "type": "object",
+                "properties": {
+                    "firstname": {
+                        "type": "string"
                     },
-                    "xml": {
-                        "name": "User"
+                    "lastname": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
                     }
+                },
+                "xml": {
+                    "name": "User"
                 }
             }
         }

@@ -2,10 +2,11 @@ import chai from 'chai'
 import spies from 'chai-spies'
 import routes from '../routes/routes'
 import chaiHttp from 'chai-http'
-import ActionControllers from '../controllers/actions'
+import UsersControllers from '../controllers/users'
 import AccountsController from '../controllers/accounts'
 import TransactionsController from '../controllers/transactions'
-import UsersControllers from '../controllers/users'
+import ActionControllers from '../controllers/actions'
+import dumbData2 from '../models/testData2'
 import Helper from '../helpers/auth'
 import dotenv from 'dotenv'
 import Validate from '../helpers/validate'
@@ -20,7 +21,20 @@ chai.use(spies)
 
 let DumbData = [{ email: 'jackdoe@gmail.com', password: 'Hardpass', firstname: 'Jack', lastname: 'Doe', type: 'client' }]
 
+beforeEach(() => {
+    const Headers = { 'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZTFiMzFlZC1jYzJjLTQ3NTUtYjcyZi03YTk2Y2Y1ZmNlZGYiLCJpYXQiOjE1ODIyNzY1NTIsImV4cCI6MTU4Mjg4MTM1Mn0.sg8bky5DqluMi72XCqYn343jKkLWjMVj3b0GZ6_kE2U' }
+
+});
+
+
 describe('Test routes', () => {
+
+    beforeEach(() => {
+        const Headers = { 'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZTFiMzFlZC1jYzJjLTQ3NTUtYjcyZi03YTk2Y2Y1ZmNlZGYiLCJpYXQiOjE1ODIyNzY1NTIsImV4cCI6MTU4Mjg4MTM1Mn0.sg8bky5DqluMi72XCqYn343jKkLWjMVj3b0GZ6_kE2U' }
+
+    });
+
+
     it('gives welcome message', () => {
         chai.request(routes)
             .get('/')
@@ -33,6 +47,19 @@ describe('Test routes', () => {
     it('test get all transactions', () => {
         chai.request(routes)
             .get('/transactions')
+            .end((err, res) => {
+                expect(res).to.have.status(400)
+                done()
+            })
+    });
+
+    it('test get all transactions with token', () => {
+
+        let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZTFiMzFlZC1jYzJjLTQ3NTUtYjcyZi03YTk2Y2Y1ZmNlZGYiLCJpYXQiOjE1ODIyNzY1NTIsImV4cCI6MTU4Mjg4MTM1Mn0.sg8bky5DqluMi72XCqYn343jKkLWjMVj3b0GZ6_kE2U'
+
+        chai.request(routes)
+            .get('/accounts')
+            .set('Authorization', token)
             .end((err, res) => {
                 expect(res).to.have.status(400)
                 done()
@@ -130,11 +157,7 @@ describe('Test routes', () => {
 
 describe('test actions', () => {
 
-
-
-
-
-    it('signin should be a function', () => {
+    it('Home route should work', () => {
         ActionControllers.signIn()
         chai.request(routes)
             .get('/')
@@ -142,6 +165,9 @@ describe('test actions', () => {
                 expect(res).to.have.status(200)
                 done()
             })
+            .catch(function (err) {
+                throw err;
+            });
     })
 
     it('Sign up should be a function', () => {
@@ -151,7 +177,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
 
@@ -162,7 +190,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
     it('SetNewStatus should throw error', () => {
         ActionControllers.setNewStatus()
@@ -171,7 +201,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
     it('SetPriviledge should throw error', () => {
         ActionControllers.setPriviledge()
@@ -180,7 +212,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('delete account should be a function', () => {
@@ -190,7 +224,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('Dormant accounts should be a function', () => {
@@ -200,7 +236,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
 
@@ -272,7 +310,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('Route should return account details', () => {
@@ -282,7 +322,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('Route should return account transactions', () => {
@@ -292,7 +334,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('Route should return all accounts', () => {
@@ -302,7 +346,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('Route should credit account', () => {
@@ -312,7 +358,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('Route should debit account', () => {
@@ -322,7 +370,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('Route should return all transactions', () => {
@@ -342,7 +392,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('Route should get all users accounts', () => {
@@ -352,7 +404,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('transactions route should throw an error', () => {
@@ -361,7 +415,7 @@ describe('test actions', () => {
 
         chai.request(routes)
             .get('/transactions')
-            .set('x-access-token', token)
+            .set('Authorization', token)
             .send(DumbData)
             .end((err, res) => {
                 expect(res).to.have.status(200)
@@ -375,7 +429,7 @@ describe('test actions', () => {
 
         chai.request(routes)
             .get('/accounts')
-            .set('x-access-token', token)
+            .set('Authorization', token)
             .send(DumbData)
             .end((err, res) => {
                 expect(res).to.have.status(200)
@@ -389,7 +443,7 @@ describe('test actions', () => {
 
         chai.request(routes)
             .get('/user/manzi@gmail.com/accounts')
-            .set('x-access-token', token)
+            .set('Authorization', token)
             .send(DumbData)
             .end((err, res) => {
                 expect(res).to.have.status(200)
@@ -403,12 +457,13 @@ describe('test actions', () => {
 
         chai.request(routes)
             .post('/auth/signin')
-            .type('form')
-            .send({ '_method': 'post', 'email': 'jackdoe@gmail.com', 'password': 'Hardpass' })
+            .send(dumbData2)
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('signin should work', () => {
@@ -422,7 +477,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('non existent get', () => {
@@ -432,7 +489,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('non existent post', () => {
@@ -442,7 +501,9 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('non existent delete', () => {
@@ -452,7 +513,20 @@ describe('test actions', () => {
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done()
+            }).catch(function (err) {
+                throw err;
+            });
+    })
+
+    it('get all accounts successfully', () => {
+        const token = process.env.token
+        chai.request(routes)
+            .get('/accounts')
+            .set('Authorization', token)
+            .end((err, res) => {
+                expect(res).to.have.status(200)
             })
+
     })
 
     it('Validate token should work', () => {
@@ -461,11 +535,13 @@ describe('test actions', () => {
         Validate.verifyToken(token)
         chai.request(routes)
             .post('/auth/signup')
-            .set('x-access-token', token)
+            .set('Authorization', token)
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done();
-            })
+            }).catch(function (err) {
+                throw err;
+            });
     })
 
     it('Get Id should work', () => {
@@ -473,7 +549,7 @@ describe('test actions', () => {
         const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZTFiMzFlZC1jYzJjLTQ3NTUtYjcyZi03YTk2Y2Y1ZmNlZGYiLCJpYXQiOjE1ODIyNzY1NTIsImV4cCI6MTU4Mjg4MTM1Mn0.sg8bky5DqluMi72XCqYn343jKkLWjMVj3b0GZ6_kE2U'
         chai.request(routes)
             .get('/transactions/4')
-            .set('x-access-token', token)
+            .set('Authorization', token)
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done();
@@ -485,7 +561,7 @@ describe('test actions', () => {
         const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZTFiMzFlZC1jYzJjLTQ3NTUtYjcyZi03YTk2Y2Y1ZmNlZGYiLCJpYXQiOjE1ODIyNzY1NTIsImV4cCI6MTU4Mjg4MTM1Mn0.sg8bky5DqluMi72XCqYn343jKkLWjMVj3b0GZ6_kE2U'
         chai.request(routes)
             .get('/accounts')
-            .set('x-access-token', token)
+            .set('Authorization', token)
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done();
@@ -496,7 +572,7 @@ describe('test actions', () => {
         const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZTFiMzFlZC1jYzJjLTQ3NTUtYjcyZi03YTk2Y2Y1ZmNlZGYiLCJpYXQiOjE1ODIyNzY1NTIsImV4cCI6MTU4Mjg4MTM1Mn0.sg8bky5DqluMi72XCqYn343jKkLWjMVj3b0GZ6_kE2U'
         chai.request(routes)
             .get('/accounts/dormant')
-            .set('x-access-token', token)
+            .set('Authorization', token)
             .end((err, res) => {
                 expect(res).to.have.status(200)
                 done();
@@ -506,7 +582,263 @@ describe('test actions', () => {
 
 
 
+    // it('Get should get all dormant accounts', () => {
+
+    //     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4ZTFiMzFlZC1jYzJjLTQ3NTUtYjcyZi03YTk2Y2Y1ZmNlZGYiLCJpYXQiOjE1ODIyNzY1NTIsImV4cCI6MTU4Mjg4MTM1Mn0.sg8bky5DqluMi72XCqYn343jKkLWjMVj3b0GZ6_kE2U'
+    //     chai.request(AccountsController.getAllAccounts)
+    //         .set('Authorization', token)
+    //         .end((err, res) => {
+    //             expect(res).to.have.status(200)
+    //             done();
+    //         })
+    // })
+
+
+
+
 })
+
+
+
+// chai.should();
+// chai.use(chaiHttp);
+
+// describe('Test For admin to view accounts', () => {
+//     it('should show all user bank accounts', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .get('/accounts')
+//             .set('Authorization', token)
+//             .end((err, res) => {
+//                 expect(res).to.have.status(200);
+//                 done();
+//             });
+//     });
+//     it('should show all ACTIVE user bank accounts', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .get('/accounts?status=active')
+//             .set('Authorization', token)
+//             .end((err, res) => {
+//                 expect(res).to.have.status(200);
+//                 done();
+//             });
+//     });
+//     it('should show all DORMANT user bank accounts', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .get('/accounts?status=dormant')
+//             .set('Authorization', token)
+//             .end((err, res) => {
+//                 expect(res).to.have.status(200);
+//                 done();
+//             });
+//     });
+
+//     it('should show status must be active or dormant', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .get('/accounts?status=dorm')
+//             .set('Authorization', token)
+//             .end((err, res) => {
+//                 expect(res).to.have.status(400);
+//                 done();
+//             });
+//     });
+
+//     it('Forbidden only admins can view all accounts', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .get('/accounts')
+//             .set('Authorization', token)
+//             .end((err, res) => {
+//                 expect(res).to.have.status(403);
+//                 done();
+//             });
+//     });
+// });
+
+
+// describe('Test For admin to activate or deactivate', () => {
+//     it('should Activate account', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .patch('/account/201225')
+//             .set('Authorization', token)
+//             .send(dumbData2[5])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(200);
+//                 done();
+//             });
+//     });
+//     it('account already active', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .patch('/account/201231')
+//             .set('Authorization', token)
+//             .send(dumbData2[5])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(400);
+//                 done();
+//             });
+//     });
+
+//     it('should Activate account also', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .patch('/account/201901')
+//             .set('Authorization', token)
+//             .send(dumbData2[6])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(200);
+//                 done();
+//             });
+//     });
+
+//     it('should Deactivate account', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .patch('/account/201231')
+//             .set('Authorization', token)
+//             .send(dumbData2[6])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(200);
+//                 done();
+//             });
+//     });
+
+//     it('Account must be an integer', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .patch('/account/hjhdjfdj')
+//             .set('Authorization', token)
+//             .send(dumbData2[8])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(400);
+//                 done();
+//             });
+//     });
+// });
+
+
+// describe('Test For admin to DELETE account', () => {
+//     it('should DELETE account', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .delete('/accounts/201201')
+//             .set('Authorization', token)
+//             .end((err, res) => {
+//                 expect(res).to.have.status(200);
+//                 done();
+//             });
+//     });
+
+//     it('should NOT DELETE account, account number must be an integer', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .delete('/accounts/kjkfd')
+//             .set('Authorization', token)
+//             .end((err, res) => {
+//                 expect(res).to.have.status(400);
+//                 done();
+//             });
+//     });
+
+//     it('should NOT DELETE account,account number not found', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .delete('/accounts/128')
+//             .set('Authorization', token)
+//             .end((err, res) => {
+//                 expect(res).to.have.status(404);
+//                 done();
+//             });
+//     });
+// });
+
+
+// describe('Test For admin to create a new user', () => {
+
+//     it('should not Create new user, email already exist', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .post('/auth/create')
+//             .set('Authorization', token)
+//             .send(dumbData2[0])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(409);
+//                 done();
+//             });
+//     });
+//     it('should Create new user', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .post('/auth/create')
+//             .set('Authorization', token)
+//             .send(dumbData2[1])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(201);
+//                 done();
+//             });
+//     });
+//     it('invalid email', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .post('/auth/create')
+//             .set('Authorization', token)
+//             .send(dumbData2[2])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(400);
+//                 done();
+//             });
+//     });
+//     it('Invalid email2', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .post('/auth/create')
+//             .set('Authorization', token)
+//             .send(dumbData2[3])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(400);
+//                 done();
+//             });
+//     });
+//     it('Invalid first name', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .post('/auth/create')
+//             .set('Authorization', token)
+//             .send(dumbData2[4])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(400);
+//                 done();
+//             });
+//     });
+
+//     it('Type must be cashier or staff', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .post('/auth/create')
+//             .set('Authorization', token)
+//             .send(dumbData2[9])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(400);
+//                 done();
+//             });
+//     });
+
+//     it('Type can not be empty', (done) => {
+//         const token = process.env.token;
+//         chai.request(routes)
+//             .post('/auth/create')
+//             .set('Authorization', token)
+//             .send(dumbData2[10])
+//             .end((err, res) => {
+//                 expect(res).to.have.status(400);
+//                 done();
+//             });
+//     });
+// });
 
 //
 
