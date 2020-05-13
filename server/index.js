@@ -13,7 +13,6 @@ const hostname = '127.0.0.1';
 
 app.use(routes);
 
-
 app.listen(PORT, () => {
     console.log(`Server running on http://${hostname}:${PORT}/`);
 });

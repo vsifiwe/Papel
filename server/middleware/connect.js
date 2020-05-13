@@ -4,10 +4,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true,
-    rejectUnauthorized: false,
+    connectionString: 'postgressql://postgres:shyoko@127.0.0.1:49816/api',
+    // ssl: true,
+    // rejectUnauthorized: false,
 });
+if (pool) {
+    console.log("goooooo");
+} else {
+    console.log("noooooo");
+}
 
 export default {
 
